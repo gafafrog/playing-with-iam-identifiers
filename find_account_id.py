@@ -5,21 +5,10 @@
 2^39 < 999,999,999,999 < 2^40 なので、12桁の整数を表現するには40ビット必要。
 '''
 import sys
+import b32_to_bits as b32
 
 BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
 DECODE_MAP = {char: index for index, char in enumerate(BASE32_ALPHABET)}
-
-
-def base32_to_bit_array(b32_string):
-    '''
-    Base32文字列をビット配列（文字列）に変換する
-    '''
-    bit_string = ""
-    for char in b32_string.upper():
-        if char in DECODE_MAP:
-            value = DECODE_MAP[char]
-            bit_string += format(value, '05b')
-    return bit_string
 
 
 def find_12_digits(bit_array, looking_for=None):
@@ -43,11 +32,11 @@ if __name__ == '__main__':
         print("エラー: 解析するIDを引数として渡してください。")
         sys.exit(1)
 
-
     iam_id_part = sys.argv[1]
     looking_for = sys.argv[2] if len(sys.argv) > 2 else None
-    bit_array = base32_to_bit_array(iam_id_part)
-    print(f"Base32文字列: {iam_id_part}")
-    print(f"ビット配列: {bit_array}")
+    bit_array = b32.base32_to_bit_array(iam_id_part)
+    array_as_str = b32.readable_array(bit_array, 5)
 
+    print(f"Base32文字列: {iam_id_part}")
+    print(f"ビット配列: {array_as_str}")
     find_12_digits(bit_array, looking_for)
