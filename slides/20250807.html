@@ -21,10 +21,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align content to the top */
+            justify-content: flex-start; /* Align content block to the top */
             align-items: center;
-            padding: 5rem 4rem; /* More top padding */
-            border-bottom: 1px solid #374151; /* Gray border between slides */
+            padding: 5rem 4rem;
+            border-bottom: 1px solid #374151;
             scroll-snap-align: start;
             scroll-snap-stop: always;
         }
@@ -34,22 +34,28 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Make content area fill the slide's vertical space */
+            flex: 1;
         }
-        h1, h2.slide-title {
+        h2.slide-title {
+            font-size: 3.75rem;
             font-weight: 900;
             text-align: center;
             letter-spacing: -0.025em;
             width: 100%;
-            margin-bottom: 4rem; /* Space between title and body */
-        }
-        h1 {
-            font-size: 10rem; /* 160px, increased from 8rem */
-        }
-        h2.slide-title {
-            font-size: 3.75rem; /* 60px */
+            margin-bottom: 4rem;
+            /* Prevent title from shrinking */
+            flex-shrink: 0;
         }
         .slide-body {
             width: 100%;
+            /* Make the body fill the remaining space */
+            flex-grow: 1;
+            /* Center its content vertically and horizontally */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         pre {
             background-color: #1F2937;
@@ -69,7 +75,15 @@
         }
         /* Special style for title-only slides to center content vertically */
         .slide.is-centered {
-            justify-content: center;
+            justify-content: center; /* This vertically centers the content */
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .slide.is-centered .slide-content {
+            flex-grow: 0; /* Stop the content block from filling the space, allowing it to be centered */
+        }
+        .slide.is-centered .slide-title {
+            margin-bottom: 0; /* Remove bottom margin for perfect centering */
         }
     </style>
 </head>
@@ -79,7 +93,7 @@
         <!-- スライド1：タイトル -->
         <section class="slide is-centered">
             <div class="slide-content text-center">
-                <h1 class="leading-normal text-gray-100">IAMで感じる<br>コンピューターサイエンスの基礎</h1>
+                <h2 class="slide-title">IAMで感じる<br>コンピューターサイエンスの基礎</h2>
             </div>
         </section>
 
@@ -107,9 +121,11 @@
             <div class="slide-content">
                 <h2 class="slide-title">IAM Identifiers (Live Demo)</h2>
                 <div class="slide-body">
-                    <p class="mb-4 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM Identifiers (AWS Docs)</a></p>
-                    <pre><code class="language-bash">aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
+                    <div class="w-full">
+                        <p class="mb-4 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM Identifiers (AWS Docs)</a></p>
+                        <pre><code class="language-bash">aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
 aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t' '\n'</code></pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -119,7 +135,7 @@ aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t
             <div class="slide-content">
                 <h2 class="slide-title">実行結果</h2>
                 <div class="slide-body">
-                    <pre><code class="language-bash"># User IDs
+                    <pre class="w-full"><code class="language-bash"># User IDs
 $ aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
 AIDAVI363QCFCID3DLLFU
 AIDAVI363QCFBHNTIMT5Z
@@ -149,10 +165,12 @@ AROAVI363QCFDBDJZ2YYT</code></pre>
         </section>
 
         <!-- スライド6：エンコーディング -->
-        <section class="slide is-centered">
-            <div class="slide-content text-center">
-                <h2 class="slide-title text-6xl mb-8">エンコーディング</h2>
-                <p class="text-8xl">なんでしょうね</p>
+        <section class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title">エンコーディング</h2>
+                <div class="slide-body">
+                    <p class="text-8xl text-center">なんでしょうね</p>
+                </div>
             </div>
         </section>
 
@@ -161,8 +179,9 @@ AROAVI363QCFDBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title text-6xl">Base32!</h2>
                 <div class="slide-body">
-                    <p class="mb-4 text-lg text-center"><a href="https://en.wikipedia.org/wiki/Base32" target="_blank">https://en.wikipedia.org/wiki/Base32</a></p>
-                    <pre><code class="language-bash"># b32_to_bits.py を作成
+                    <div class="w-full">
+                        <p class="mb-4 text-lg text-center"><a href="https://en.wikipedia.org/wiki/Base32" target="_blank">https://en.wikipedia.org/wiki/Base32</a></p>
+                        <pre><code class="language-bash"># b32_to_bits.py を作成
 cat &lt;&lt; 'EOF' &gt; b32_to_bits.py
 import sys
 
@@ -186,6 +205,7 @@ EOF
 
 # スクリプトを実行
 python3 b32_to_bits.py "VI363QCF"</code></pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -195,7 +215,7 @@ python3 b32_to_bits.py "VI363QCF"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">ビット遊び</h2>
                 <div class="slide-body">
-                    <pre><code class="language-text">Base32文字列: VI363QCF
+                    <pre class="w-full"><code class="language-text">Base32文字列: VI363QCF
 ビット配列: 101010110111001101100011110100011000110</code></pre>
                 </div>
             </div>
@@ -206,7 +226,7 @@ python3 b32_to_bits.py "VI363QCF"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">ビット遊び</h2>
                 <div class="slide-body">
-                    <pre><code class="language-bash"># find_account_id.py を作成
+                    <pre class="w-full"><code class="language-bash"># find_account_id.py を作成
 cat &lt;&lt; 'EOF' &gt; find_account_id.py
 import sys
 
@@ -257,7 +277,7 @@ python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">アカウントID、発見！</h2>
                 <div class="slide-body">
-                    <pre><code class="language-text">--- ビットの海から40ビットずつ切り出して探す ---
+                    <pre class="w-full"><code class="language-text">--- ビットの海から40ビットずつ切り出して探す ---
 開始  0 bit目: 783446549264
 開始  1 bit: 829413098529
 開始  2 bit: 921346197058
@@ -276,7 +296,7 @@ python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">他の取得方法</h2>
                 <div class="slide-body">
-                    <div class="mt-8 grid md:grid-cols-2 gap-8">
+                    <div class="grid md:grid-cols-2 gap-8 w-full">
                         <div>
                             <h3 class="text-2xl font-bold mb-2">方法1：マネジメントコンソール</h3>
                             <p class="text-lg">AWSマネジメントコンソールの右上に表示されるアカウント情報から確認できます。</p>
@@ -312,7 +332,7 @@ python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
         <!-- スライド13：おしまい -->
         <section class="slide is-centered">
             <div class="slide-content text-center">
-                <h2 class="slide-title text-8xl mb-0">おしまい</h2>
+                <h2 class="slide-title text-8xl">おしまい</h2>
             </div>
         </section>
 
