@@ -100,16 +100,16 @@
         <!-- スライド2：自己紹介 -->
         <section class="slide">
             <div class="slide-content">
-                <h2 class="slide-title">わたし</h2>
+                <h2 class="slide-title">わたしについて</h2>
                 <div class="slide-body">
                     <div class="grid md:grid-cols-3 gap-8 items-center">
                         <div class="flex justify-center">
                             <img src="https://unavatar.io/twitter/gafafrog" alt="gafafrogさんのXプロフィール画像" class="rounded-full w-48 h-48 object-cover shadow-lg">
                         </div>
                         <div class="md:col-span-2 text-2xl space-y-4">
-                            <p><span class="font-bold">gafafrog</span> / SNS: <a href="https://x.com/gafafrog" target="_blank">@gafafrog</a></p>
-                            <p class="text-xl mt-4">普段はIAMでソフトウェア開発者をしています。</p>
-                            <p class="font-bold mt-8">採用しています！ <a href="https://www.amazon.jobs" target="_blank">https://www.amazon.jobs</a></p>
+                            <p><a href="https://x.com/gafafrog" target="_blank">@gafafrog</a></p>
+                            <p class="text-xl mt-4">IAMのソフトウェアエンジニア</p>
+                            <p class="text-xl mt-4">採用してます！ <a href="https://www.amazon.jobs" target="_blank">https://www.amazon.jobs</a></p>
                         </div>
                     </div>
                 </div>
@@ -119,10 +119,10 @@
         <!-- スライド3：IAM Identifiers (Live Demo) -->
         <section class="slide">
             <div class="slide-content">
-                <h2 class="slide-title">IAM Identifiers (Live Demo)</h2>
+                <h2 class="slide-title">IAM Identifiers</h2>
                 <div class="slide-body">
                     <div class="w-full">
-                        <p class="mb-4 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM Identifiers (AWS Docs)</a></p>
+                        <p class="mb-8 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM identifiers - AWS Identity and Access Management</a></p>
                         <pre><code class="language-bash">aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
 aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t' '\n'</code></pre>
                     </div>
@@ -133,20 +133,20 @@ aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t
         <!-- スライド4：実行結果 -->
         <section class="slide">
             <div class="slide-content">
-                <h2 class="slide-title">実行結果</h2>
+                <h2 class="slide-title">IAM Identifiers</h2>
                 <div class="slide-body">
                     <pre class="w-full"><code class="language-bash"># User IDs
 $ aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
-AIDAVI363QCFCID3DLLFU
-AIDAVI363QCFBHNTIMT5Z
+AIDA<span class="bg-yellow-500 text-black">VI363QCF</span>CID3DLLFU
+AIDA<span class="bg-yellow-500 text-black">VI363QCF</span>BHNTIMT5Z
 
 # Role IDs
 $ aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t' '\n'
-AROAVI363QCFFRQNZPFCM
-AROAVI363QCFCHVWR6WLJ
-AROAVI363QCFF7FBH4ESB
-AROAVI363QCFJX2T55E5U
-AROAVI363QCFDBDJZ2YYT</code></pre>
+AROA<span class="bg-yellow-500 text-black">VI363QCF</span>FRQNZPFCM
+AROA<span class="bg-yellow-500 text-black">VI363QCF</span>CHVWR6WLJ
+AROA<span class="bg-yellow-500 text-black">VI363QCF</span>F7FBH4ESB
+AROA<span class="bg-yellow-500 text-black">VI363QCF</span>JX2T55E5U
+AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
                 </div>
             </div>
         </section>
@@ -156,9 +156,10 @@ AROAVI363QCFDBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">AWSアカウントID</h2>
                 <div class="slide-body">
+                    <p class="mb-8 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-identifiers.html" target="_blank">View AWS account identifiers - AWS Account Management</a></p>
                     <ul class="text-4xl space-y-8 list-disc list-inside text-center">
                         <li>12桁の数列</li>
-                        <li>秘密？</li>
+                        <li>秘密...？</li>
                     </ul>
                 </div>
             </div>
@@ -169,7 +170,7 @@ AROAVI363QCFDBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">エンコーディング</h2>
                 <div class="slide-body">
-                    <p class="text-8xl text-center">なんでしょうね</p>
+                    <p class="text-4xl text-center">なんでしょうね</p>
                 </div>
             </div>
         </section>
@@ -180,7 +181,7 @@ AROAVI363QCFDBDJZ2YYT</code></pre>
                 <h2 class="slide-title text-6xl">Base32!</h2>
                 <div class="slide-body">
                     <div class="w-full">
-                        <p class="mb-4 text-lg text-center"><a href="https://en.wikipedia.org/wiki/Base32" target="_blank">https://en.wikipedia.org/wiki/Base32</a></p>
+                        <p class="mb-4 text-lg text-center">参考: <a href="https://en.wikipedia.org/wiki/Base32" target="_blank">Base32 - Wikipedia</a></p>
                         <pre><code class="language-bash"># b32_to_bits.py を作成
 cat &lt;&lt; 'EOF' &gt; b32_to_bits.py
 import sys
@@ -196,15 +197,21 @@ def base32_to_bit_array(b32_string):
             bit_string += format(value, '05b')
     return bit_string
 
-iam_id_part = sys.argv[1]
-bit_array = base32_to_bit_array(iam_id_part)
+def readable_array(arr, chunk_size):
+    chunks = [arr[i:i+chunk_size] for i in range(0, len(arr), chunk_size)]
+    return " ".join(chunks)
 
-print(f"Base32文字列: {iam_id_part}")
-print(f"ビット配列: {bit_array}")
+if __name__ == '__main__':
+    iam_id_part = sys.argv[1]
+    bit_array = base32_to_bit_array(iam_id_part)
+    array_as_str = readable_array(bit_array, 5)
+
+    print(f"Base32文字列: {iam_id_part}")
+    print(f"ビット配列: {array_as_str}")
 EOF
 
 # スクリプトを実行
-python3 b32_to_bits.py "VI363QCF"</code></pre>
+python3 b32_to_bits.py "ABCDE"</code></pre>
                     </div>
                 </div>
             </div>
@@ -215,8 +222,13 @@ python3 b32_to_bits.py "VI363QCF"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">ビット遊び</h2>
                 <div class="slide-body">
-                    <pre class="w-full"><code class="language-text">Base32文字列: VI363QCF
-ビット配列: 101010110111001101100011110100011000110</code></pre>
+                    <pre class="w-full"><code class="language-text">$ python3 b32_to_bits.py "ABCDE"
+Base32文字列: ABCDE
+ビット配列: 00000 00001 00010 00011 00100
+
+$ python3 b32_to_bits.py "AIDAVI363QCFCID3DLLFU"
+Base32文字列: AIDAVI363QCFCID3DLLFU
+ビット配列: 00000 01000 00011 00000 10101 01000 11011 11110 11011 10000 00010 00101 00010 01000 00011 11011 00011 01011 01011 00101 10100</code></pre>
                 </div>
             </div>
         </section>
@@ -229,45 +241,42 @@ python3 b32_to_bits.py "VI363QCF"</code></pre>
                     <pre class="w-full"><code class="language-bash"># find_account_id.py を作成
 cat &lt;&lt; 'EOF' &gt; find_account_id.py
 import sys
+import b32_to_bits as b32
 
 BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
 DECODE_MAP = {char: index for index, char in enumerate(BASE32_ALPHABET)}
 
-def base32_to_bit_array(b32_string):
-    """Base32文字列をビット配列（文字列）に変換する"""
-    bit_string = ""
-    for char in b32_string.upper():
-        if char in DECODE_MAP:
-            value = DECODE_MAP[char]
-            bit_string += format(value, '05b')
-    return bit_string
+def find_12_digits(bit_array, looking_for=None):
+    '''開始位置を一つずつずらしつつ、配列の中で連続した40ビットを整数にして出力する。
+    '''
+    for shift in range(len(bit_array) - 40):
+        # 開始位置をずらし、40ビット分を切り出す
+        bit_chunk = bit_array[shift : shift + 40]
 
-if len(sys.argv) < 2:
-    print("エラー: 解析するIDを引数として渡してください。")
-    sys.exit(1)
+        # 切り出したビットの塊を整数に変換
+        candidate = int(bit_chunk, 2)
 
-iam_id_part = sys.argv[1]
-bit_array = base32_to_bit_array(iam_id_part)
+        candidate_as_str = '{:0>12}'.format(str(candidate)[:12])
+        found = " <== Found!!" if candidate_as_str == looking_for else ""
+        print(f"開始 {shift:2d} bit目: {candidate_as_str}{found}")
 
-print(f"--- ビットの海から40ビットずつ切り出して探す ---")
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("エラー: 解析するIDを引数として渡してください。")
+        sys.exit(1)
 
-# 12桁のアカウントIDは約39.8ビットなので、40ビット分を候補とする
-for shift in range(16): # デモ用に探索範囲を限定
-    if shift + 40 > len(bit_array):
-        break
+    iam_id_part = sys.argv[1]
+    looking_for = sys.argv[2] if len(sys.argv) > 2 else None
+    bit_array = b32.base32_to_bit_array(iam_id_part)
+    array_as_str = b32.readable_array(bit_array, 5)
 
-    # 開始位置をずらし、40ビット分を切り出す
-    bit_chunk = bit_array[shift : shift + 40]
-
-    # 切り出したビットの塊を整数に変換
-    candidate = int(bit_chunk, 2)
-
-    # 候補を12桁に整形して表示（足りなければ0で埋める）
-    print(f"開始 {shift:2d} bit目: {'{:0>12}'.format(str(candidate)[:12])}")
+    print(f"Base32文字列: {iam_id_part}")
+    print(f"ビット配列: {array_as_str}")
+    find_12_digits(bit_array, looking_for)
 EOF
 
 # ID全体を渡して実行
-python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
+python3 find_account_id.py "AIDAVI363QCFCID3DLLFU" "362653909130"</code></pre>
                 </div>
             </div>
         </section>
@@ -275,17 +284,34 @@ python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
         <!-- スライド10：アカウントID、発見！ -->
         <section class="slide">
             <div class="slide-content">
-                <h2 class="slide-title">アカウントID、発見！</h2>
+                <h2 class="slide-title">アカウントID！</h2>
                 <div class="slide-body">
-                    <pre class="w-full"><code class="language-text">--- ビットの海から40ビットずつ切り出して探す ---
-開始  0 bit目: 783446549264
-開始  1 bit: 829413098529
-開始  2 bit: 921346197058
-開始  3 bit: 097930818658
-開始  4 bit: 048965409329
-開始  5 bit: 024482704664
-開始  6 bit: 012241352332
-<span class="bg-yellow-500 text-black font-bold p-1 rounded">開始  7 bit目: 123456789012  &lt;-- これだ！</span>
+                    <pre class="w-full"><code class="language-text">$ python3 find_account_id.py "AIDAVI363QCFCID3DLLFU" "362653909130"
+Base32文字列: AIDAVI363QCFCID3DLLFU
+ビット配列: 00000 01000 00011 00000 10101 01000 11011 11110 11011 10000 00010 00101 00010 01000 00011 11011 00011 01011 01011 00101 10100
+開始  0 bit目: 008691295102
+開始  1 bit目: 017382590205
+開始  2 bit目: 034765180411
+開始  3 bit目: 069530360822
+開始  4 bit目: 139060721645
+開始  5 bit目: 278121443291
+開始  6 bit目: 556242886583
+開始  7 bit目: 012974145390
+開始  8 bit目: 025948290780
+開始  9 bit目: 051896581560
+開始 10 bit目: 103793163120
+開始 11 bit目: 207586326240
+開始 12 bit目: 415172652480
+開始 13 bit目: 830345304960
+開始 14 bit目: 561178982145
+開始 15 bit目: 022846336514
+開始 16 bit目: 045692673028
+開始 17 bit目: 091385346056
+開始 18 bit目: 182770692113
+開始 19 bit目: 365541384226
+開始 20 bit目: 731082768453
+<span class="bg-yellow-500 text-black font-bold p-1 rounded">開始 21 bit目: 362653909130 <== Found!!</span>
+開始 22 bit目: 72530781826
 ...</code></pre>
                 </div>
             </div>
@@ -296,15 +322,14 @@ python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">他の取得方法</h2>
                 <div class="slide-body">
-                    <div class="grid md:grid-cols-2 gap-8 w-full">
-                        <div>
-                            <h3 class="text-2xl font-bold mb-2">方法1：マネジメントコンソール</h3>
-                            <p class="text-lg">AWSマネジメントコンソールの右上に表示されるアカウント情報から確認できます。</p>
-                            <img src="https://placehold.co/400x150/1F2937/FFFFFF?text=コンソールのスクリーンショット画像" alt="コンソールのスクリーンショット画像" class="mt-4 rounded-lg border border-gray-600">
+                    <div class="w-full max-w-2xl">
+                        <div class="mb-24">
+                            <h3 class="text-2xl font-bold mb-2 text-center">方法1：マネジメントコンソール</h3>
+                            <p class="text-lg text-center">ちょっとハックだけどできる。</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold mb-2">方法2：AWS CLI</h3>
-                            <p class="text-lg"><code>sts get-access-key-info</code> コマンドで、アクセスキーIDからアカウントIDを取得できます。</p>
+                            <h3 class="text-2xl font-bold mb-2 text-center">方法2：AWS CLI</h3>
+                            <p class="text-lg text-center">実はそれ用のAPIがちゃんとある。</p>
                             <pre class="mt-4"><code class="language-bash">$ aws sts get-access-key-info --access-key-id AKIAIOSFODNN7EXAMPLE
 
 {
@@ -321,6 +346,7 @@ python3 find_account_id.py "VI363QCFCID3DLLFU"</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">まとめ</h2>
                 <div class="slide-body">
+                    <p class="text-4xl mb-20">今日やったこと</p>
                     <ul class="text-4xl space-y-8 list-disc list-inside text-center">
                         <li>エンコーディング (Base32)</li>
                         <li>ビット演算</li>
