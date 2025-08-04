@@ -82,3 +82,8 @@ Base32文字列: AIDACKCEVSQ6C2EXAMPLE
 開始 63 bit目: 774360895321
 開始 64 bit目: 449210162866
 ```
+
+## あわせて読みたい
+- [A short note on AWS KEY ID - Medium](https://medium.com/@TalBeerySec/a-short-note-on-aws-key-id-f88cc4317489)
+- [AWS Access Key ID formats - Aidan Steele's blog (usually about AWS)](https://awsteele.com/blog/2020/09/26/aws-access-key-format.html)
+- [Get Account ID from AWS Access Keys - Hacking The Cloud](https://hackingthe.cloud/aws/enumeration/get-account-id-from-keys/)
