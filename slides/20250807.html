@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Prism CSS for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         html {
             scroll-snap-type: y mandatory;
@@ -56,17 +58,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            /* Set a base font size for all text content inside the body */
+            font-size: 2rem; /* Increased base font size */
+            line-height: 1.6;
         }
-        pre {
-            background-color: #1F2937;
+        /* PrismJS overrides for better integration */
+        pre[class*="language-"] {
             border: 1px solid #374151;
             border-radius: 0.5rem;
             padding: 1.5rem;
             overflow-x: auto;
-            font-size: 1rem;
+            font-size: 1rem; /* Keep code font size the same */
             line-height: 1.7;
         }
-        code {
+        code[class*="language-"],
+        pre[class*="language-"] {
             font-family: 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", monospace;
         }
         a {
@@ -106,10 +112,10 @@
                         <div class="flex justify-center">
                             <img src="https://unavatar.io/twitter/gafafrog" alt="gafafrogさんのXプロフィール画像" class="rounded-full w-48 h-48 object-cover shadow-lg">
                         </div>
-                        <div class="md:col-span-2 text-2xl space-y-4">
+                        <div class="md:col-span-2 space-y-4">
                             <p><a href="https://x.com/gafafrog" target="_blank">@gafafrog</a></p>
-                            <p class="text-xl mt-4">IAMのソフトウェアエンジニア</p>
-                            <p class="text-xl mt-4">採用してます！ <a href="https://www.amazon.jobs" target="_blank">https://www.amazon.jobs</a></p>
+                            <p>IAMのソフトウェアエンジニア</p>
+                            <p>採用してます！ <a href="https://www.amazon.jobs" target="_blank">https://www.amazon.jobs</a></p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +128,7 @@
                 <h2 class="slide-title">IAM Identifiers</h2>
                 <div class="slide-body">
                     <div class="w-full">
-                        <p class="mb-8 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM identifiers - AWS Identity and Access Management</a></p>
+                        <p class="mb-8 text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM identifiers - AWS Identity and Access Management</a></p>
                         <pre><code class="language-bash">aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
 aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t' '\n'</code></pre>
                     </div>
@@ -156,8 +162,8 @@ AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">AWSアカウントID</h2>
                 <div class="slide-body">
-                    <p class="mb-8 text-lg text-center">参考: <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-identifiers.html" target="_blank">View AWS account identifiers - AWS Account Management</a></p>
-                    <ul class="text-4xl space-y-8 list-disc list-inside text-center">
+                    <p class="mb-8 text-center">参考: <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-identifiers.html" target="_blank">View AWS account identifiers - AWS Account Management</a></p>
+                    <ul class="space-y-8 list-disc list-inside text-center">
                         <li>12桁の数列</li>
                         <li>秘密...？</li>
                     </ul>
@@ -170,7 +176,7 @@ AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">エンコーディング</h2>
                 <div class="slide-body">
-                    <p class="text-4xl text-center">なんでしょうね</p>
+                    <p class="text-center">なんでしょうね</p>
                 </div>
             </div>
         </section>
@@ -178,11 +184,11 @@ AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
         <!-- スライド7：Base32！ -->
         <section class="slide">
             <div class="slide-content">
-                <h2 class="slide-title text-6xl">Base32!</h2>
+                <h2 class="slide-title">Base32!</h2>
                 <div class="slide-body">
                     <div class="w-full">
-                        <p class="mb-4 text-lg text-center">参考: <a href="https://en.wikipedia.org/wiki/Base32" target="_blank">Base32 - Wikipedia</a></p>
-                        <pre><code class="language-bash"># b32_to_bits.py を作成
+                        <p class="mb-4 text-center">参考: <a href="https://en.wikipedia.org/wiki/Base32" target="_blank">Base32 - Wikipedia</a></p>
+                        <pre><code class="language-python"># b32_to_bits.py を作成
 cat &lt;&lt; 'EOF' &gt; b32_to_bits.py
 import sys
 
@@ -238,7 +244,7 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
             <div class="slide-content">
                 <h2 class="slide-title">ビット遊び</h2>
                 <div class="slide-body">
-                    <pre class="w-full"><code class="language-bash"># find_account_id.py を作成
+                    <pre class="w-full"><code class="language-python"># find_account_id.py を作成
 cat &lt;&lt; 'EOF' &gt; find_account_id.py
 import sys
 import b32_to_bits as b32
@@ -257,7 +263,7 @@ def find_12_digits(bit_array, looking_for=None):
         candidate = int(bit_chunk, 2)
 
         candidate_as_str = '{:0>12}'.format(str(candidate)[:12])
-        found = " <== Found!!" if candidate_as_str == looking_for else ""
+        found = " &lt;== Found!!" if candidate_as_str == looking_for else ""
         print(f"開始 {shift:2d} bit目: {candidate_as_str}{found}")
 
 if __name__ == '__main__':
@@ -324,12 +330,12 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
                 <div class="slide-body">
                     <div class="w-full max-w-2xl">
                         <div class="mb-24">
-                            <h3 class="text-2xl font-bold mb-2 text-center">方法1：マネジメントコンソール</h3>
-                            <p class="text-lg text-center">ちょっとハックだけどできる。</p>
+                            <h3 class="font-bold mb-2 text-center">方法1：IAMコンソール</h3>
+                            <p class="text-center">ちょっとハックだけどできる。</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold mb-2 text-center">方法2：AWS CLI</h3>
-                            <p class="text-lg text-center">実はそれ用のAPIがちゃんとある。</p>
+                            <h3 class="font-bold mb-2 text-center">方法2：AWS CLI</h3>
+                            <p class="text-center">実はそれ用のAPIがちゃんとある。</p>
                             <pre class="mt-4"><code class="language-bash">$ aws sts get-access-key-info --access-key-id AKIAIOSFODNN7EXAMPLE
 
 {
@@ -346,8 +352,8 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
             <div class="slide-content">
                 <h2 class="slide-title">まとめ</h2>
                 <div class="slide-body">
-                    <p class="text-4xl mb-20">今日やったこと</p>
-                    <ul class="text-4xl space-y-8 list-disc list-inside text-center">
+                    <p class="mb-20">今日やったこと</p>
+                    <ul class="space-y-8 list-disc list-inside text-center">
                         <li>エンコーディング (Base32)</li>
                         <li>ビット演算</li>
                     </ul>
@@ -364,5 +370,8 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
 
     </main>
 
+    <!-- Prism JS for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
