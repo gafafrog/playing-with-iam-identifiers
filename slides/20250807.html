@@ -127,11 +127,11 @@
             <div class="slide-content">
                 <h2 class="slide-title">IAM Identifiers</h2>
                 <div class="slide-body">
-                    <div class="w-full">
-                        <p class="mb-8 text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM identifiers - AWS Identity and Access Management</a></p>
+                    <div class="w-full mb-36">
                         <pre><code class="language-bash">aws iam list-users --max-items 5 --query 'Users[].UserId' --output text | tr '\t' '\n'
 aws iam list-roles --max-items 5 --query 'Roles[].RoleId' --output text | tr '\t' '\n'</code></pre>
                     </div>
+                    <p class="mb-8 text-center">参考: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html" target="_blank">IAM identifiers - AWS Identity and Access Management</a></p>
                 </div>
             </div>
         </section>
@@ -162,10 +162,6 @@ AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">AWSアカウントID</h2>
                 <div class="slide-body">
-                    <ul class="space-y-8 list-disc list-inside text-center mb-36">
-                        <li>12桁の数列</li>
-                        <li>秘密...？</li>
-                    </ul>
                     <p class="text-center">参考: <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-identifiers.html" target="_blank">View AWS account identifiers - AWS Account Management</a></p>
                 </div>
             </div>
@@ -176,7 +172,7 @@ AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
             <div class="slide-content">
                 <h2 class="slide-title">エンコーディング</h2>
                 <div class="slide-body">
-                    <p class="text-center">なんでしょうね</p>
+                    <p class="text-center">AIDAVI363QCFCID3DLLFU</p>
                 </div>
             </div>
         </section>
@@ -188,53 +184,7 @@ AROA<span class="bg-yellow-500 text-black">VI363QCF</span>DBDJZ2YYT</code></pre>
                 <div class="slide-body">
                     <div class="w-full">
                         <p class="mb-4 text-center">参考: <a href="https://en.wikipedia.org/wiki/Base32" target="_blank">Base32 - Wikipedia</a></p>
-                        <pre><code class="language-python"># b32_to_bits.py を作成
-cat &lt;&lt; 'EOF' &gt; b32_to_bits.py
-import sys
-
-BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
-DECODE_MAP = {char: index for index, char in enumerate(BASE32_ALPHABET)}
-
-def base32_to_bit_array(b32_string):
-    bit_string = ""
-    for char in b32_string.upper():
-        if char in DECODE_MAP:
-            value = DECODE_MAP[char]
-            bit_string += format(value, '05b')
-    return bit_string
-
-def readable_array(arr, chunk_size):
-    chunks = [arr[i:i+chunk_size] for i in range(0, len(arr), chunk_size)]
-    return " ".join(chunks)
-
-if __name__ == '__main__':
-    iam_id_part = sys.argv[1]
-    bit_array = base32_to_bit_array(iam_id_part)
-    array_as_str = readable_array(bit_array, 5)
-
-    print(f"Base32文字列: {iam_id_part}")
-    print(f"ビット配列: {array_as_str}")
-EOF
-
-# スクリプトを実行
-python3 b32_to_bits.py "ABCDE"</code></pre>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- スライド8：ビット遊び -->
-        <section class="slide">
-            <div class="slide-content">
-                <h2 class="slide-title">ビット遊び</h2>
-                <div class="slide-body">
-                    <pre class="w-full"><code class="language-text">$ python3 b32_to_bits.py "ABCDE"
-Base32文字列: ABCDE
-ビット配列: 00000 00001 00010 00011 00100
-
-$ python3 b32_to_bits.py "AIDAVI363QCFCID3DLLFU"
-Base32文字列: AIDAVI363QCFCID3DLLFU
-ビット配列: 00000 01000 00011 00000 10101 01000 11011 11110 11011 10000 00010 00101 00010 01000 00011 11011 00011 01011 01011 00101 10100</code></pre>
                 </div>
             </div>
         </section>
@@ -324,6 +274,7 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
         </section>
 
         <!-- スライド11：他の取得方法 -->
+        <!--
         <section class="slide">
             <div class="slide-content">
                 <h2 class="slide-title">他の取得方法</h2>
@@ -346,8 +297,10 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
                 </div>
             </div>
         </section>
+        -->
 
         <!-- スライド12：まとめ -->
+        <!--
         <section class="slide">
             <div class="slide-content">
                 <h2 class="slide-title">まとめ</h2>
@@ -356,6 +309,37 @@ Base32文字列: AIDAVI363QCFCID3DLLFU
                     <ul class="space-y-8 list-disc list-inside text-center">
                         <li>エンコーディング (Base32)</li>
                         <li>ビット演算</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- スライド12.1： あわせて読みたい -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title">あわせて読みたい</h2>
+                <div class="slide-body">
+                    <ul class="space-y-4 list-disc list-inside text-left">
+                      <li>
+                        <a href="https://awsteele.com/blog/2020/09/26/aws-access-key-format.html"
+                           target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">
+                          AWS Access Key ID formats - Aidan Steele's blog (usually about AWS)
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://medium.com/@TalBeerySec/a-short-note-on-aws-key-id-f88cc4317489"
+                           target="_blank" rel="noopener noreferrer"
+                           class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">
+                          A short note on AWS KEY ID - Medium
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://hackingthe.cloud/aws/enumeration/get-account-id-from-keys/"
+                           target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">
+                          Get Account ID from AWS Access Keys - Hacking The Cloud
+                        </a>
+                      </li>
                     </ul>
                 </div>
             </div>
